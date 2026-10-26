@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: cryptoradar-pro
+    runtime: node
+    plan: free
+    region: singapore # hoặc oregon / frankfurt
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_GROQ_API_KEY
+        sync: false # Nhập từ Dashboard Render
+      - key: VITE_DEFAULT_GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: DATABASE_URL
+        sync: false # Chuỗi kết nối TiDB Cloud Serverless
