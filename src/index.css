@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-crypto-canvas: #090d16;
+  --color-crypto-surface: #0f172a;
+  --color-crypto-elevated: #172033;
+  --color-crypto-hover: #1b253b;
+  --color-crypto-amber: #d49a42;
+  --color-crypto-emerald: #34d399;
+  --color-crypto-rose: #f87171;
+}
+
+@layer base {
+  :root {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: #090d16;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+}
+
+.font-mono-numbers {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #25334d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #384b6e;
+}
