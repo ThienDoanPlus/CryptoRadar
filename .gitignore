@@ -1,24 +1,9 @@
-# IDE
-.idea/
-.vscode/
-*.iml
-.DS_Store
-
-# Java / Spring Boot
-target/
-mvnw
-mvnw.cmd
-.mvn/
-*.class
-*.log
-*.jar
-
-# Node / Angular
 node_modules/
+build/
 dist/
-.angular/
-npm-debug.log
-yarn-error.log
-
-# Docker
-postgres-data/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.vite/
