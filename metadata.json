@@ -1,0 +1,6 @@
+{
+  "name": "CryptoRadar - 5 Trụ Cột Quan Sát Thị Trường Pro",
+  "description": "Bộ công cụ quan sát trực quan thị trường Crypto & Macro: Bản đồ thanh khoản, Soi ví cá voi On-chain, Dòng tiền ETF Phố Wall, Lịch tin tức vĩ mô và Token Unlocks cùng Quy trình 5 phút mỗi sáng.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
