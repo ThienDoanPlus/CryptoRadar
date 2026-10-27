@@ -126,6 +126,7 @@ export interface EtfFilingItem {
   custodian: string;
   approvalProbability: number;
   notes: string;
+  edgarUrl?: string;
 }
 
 export interface MacroEvent {
