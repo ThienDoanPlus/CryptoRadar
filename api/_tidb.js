@@ -1,9 +1,15 @@
+import 'dotenv/config';
 import { connect } from '@tidbcloud/serverless';
 
 function getTiDBConnection() {
-  const databaseUrl = process.env.DATABASE_URL || process.env.TIDB_DATABASE_URL;
+  let databaseUrl = process.env.DATABASE_URL || process.env.TIDB_DATABASE_URL;
 
   if (databaseUrl) {
+    // If the database in the connection string is 'sys' (a system schema where users cannot CREATE tables),
+    // automatically rewrite it to 'cryptoradar'
+    if (databaseUrl.includes(':4000/sys?')) {
+      databaseUrl = databaseUrl.replace(':4000/sys?', ':4000/cryptoradar?');
+    }
     return connect({ url: databaseUrl });
   }
 
@@ -20,7 +26,7 @@ function getTiDBConnection() {
     host,
     username,
     password,
-    database,
+    database: database === 'sys' ? 'cryptoradar' : database,
   });
 }
 

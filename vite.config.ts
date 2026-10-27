@@ -42,6 +42,8 @@ const apiServerPlugin = () => ({
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, process.cwd(), '');
+  // Expose env variables (DATABASE_URL, etc.) to process.env for local API handlers
+  Object.assign(process.env, env);
   return {
     plugins: [react(), tailwindcss(), apiServerPlugin()],
     resolve: {

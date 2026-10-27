@@ -22,6 +22,7 @@ import {
   AlertCenterModal,
   PortalDirectoryModal,
   DataSourcesModal,
+  TidbHistoryModal,
 } from './components/modals';
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
   const [isPortalsOpen, setIsPortalsOpen] = useState(false);
   const [isDataSourcesOpen, setIsDataSourcesOpen] = useState(false);
+  const [isTidbHistoryOpen, setIsTidbHistoryOpen] = useState(false);
 
   const [morningSteps, setMorningSteps] = useLocalStorage<MorningChecklistStep[]>(
     'cryptoradar_morning_steps',
@@ -79,6 +81,7 @@ export default function App() {
         onOpenAlerts={() => setIsAlertsOpen(true)}
         onOpenPortals={() => setIsPortalsOpen(true)}
         onOpenDataSources={() => setIsDataSourcesOpen(true)}
+        onOpenTidbHistory={() => setIsTidbHistoryOpen(true)}
         activeAlertCount={activeAlertCount}
         isCompactMode={isCompactMode}
         onToggleCompactMode={handleToggleCompactMode}
@@ -151,6 +154,11 @@ export default function App() {
       <DataSourcesModal
         isOpen={isDataSourcesOpen}
         onClose={() => setIsDataSourcesOpen(false)}
+      />
+
+      <TidbHistoryModal
+        isOpen={isTidbHistoryOpen}
+        onClose={() => setIsTidbHistoryOpen(false)}
       />
     </div>
   );

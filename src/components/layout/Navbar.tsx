@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabId } from '../../types/cryptoRadar';
 import { MAIN_NAV_ITEMS } from '../../constants/navigation';
-import { Bell, Clock, Compass, Minimize2, Maximize2 } from 'lucide-react';
+import { Bell, Clock, Compass, Minimize2, Maximize2, Database } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: TabId;
@@ -10,6 +10,7 @@ interface NavbarProps {
   onOpenAlerts: () => void;
   onOpenPortals: () => void;
   onOpenDataSources: () => void;
+  onOpenTidbHistory?: () => void;
   activeAlertCount: number;
   isCompactMode: boolean;
   onToggleCompactMode: () => void;
@@ -22,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAlerts,
   onOpenPortals,
   onOpenDataSources,
+  onOpenTidbHistory,
   activeAlertCount,
   isCompactMode,
   onToggleCompactMode,
@@ -71,6 +73,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span className="text-[11px] whitespace-nowrap">Nguồn API</span>
             </button>
+
+            {onOpenTidbHistory && (
+              <button
+                onClick={onOpenTidbHistory}
+                title="Xem lịch sử tín hiệu lưu trong cơ sở dữ liệu TiDB Cloud Serverless"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
+              >
+                <Database className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-[11px] whitespace-nowrap hidden sm:inline">TiDB Cloud</span>
+              </button>
+            )}
 
             <button
               onClick={onOpenPortals}
