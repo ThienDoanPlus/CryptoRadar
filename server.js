@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import healthHandler from './api/health.js';
 import verdictsHandler from './api/verdicts.js';
+import forexfactoryHandler from './api/forexfactory.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 // API Endpoints
 app.all('/api/health', (req, res) => healthHandler(req, res));
 app.all('/api/verdicts', (req, res) => verdictsHandler(req, res));
+app.all('/api/forexfactory', (req, res) => forexfactoryHandler(req, res));
 
 // Serve Frontend (Vite dist)
 const distPath = path.join(__dirname, 'dist');

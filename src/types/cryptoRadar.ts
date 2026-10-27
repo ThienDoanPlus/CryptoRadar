@@ -95,6 +95,39 @@ export interface EthEtfDailyFlow {
   totalNet: number;
 }
 
+export interface SolEtfDailyFlow {
+  date: string;
+  dayOfWeek: string;
+  gsol: number; // Grayscale Solana Trust ($M)
+  asol: number; // 21Shares Solana ETP ($M)
+  vaneckEu: number; // VanEck Solana ETN ($M)
+  others: number;
+  totalNet: number;
+}
+
+export interface XrpEtfDailyFlow {
+  date: string;
+  dayOfWeek: string;
+  gxrp: number; // Grayscale XRP Trust ($M)
+  axrp: number; // 21Shares Core XRP ETP ($M)
+  others: number;
+  totalNet: number;
+}
+
+export interface EtfFilingItem {
+  id: string;
+  issuer: string;
+  ticker: string;
+  asset: 'SOL' | 'XRP';
+  filingType: '19b-4 & S-1' | '19b-4' | 'S-1' | 'ETP / Trust';
+  status: 'Đang xét duyệt SEC' | 'Đã nộp đơn S-1' | 'Chờ phản hồi' | 'Đang giao dịch ETP';
+  filingDate: string;
+  secDeadline: string;
+  custodian: string;
+  approvalProbability: number;
+  notes: string;
+}
+
 export interface MacroEvent {
   id: string;
   title: string;

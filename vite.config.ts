@@ -31,6 +31,10 @@ const apiServerPlugin = () => ({
         }
         return handler(req, res);
       }
+      if (url.startsWith('/api/forexfactory')) {
+        const { default: handler } = await import('./api/forexfactory.js');
+        return handler(req, res);
+      }
       next();
     });
   },

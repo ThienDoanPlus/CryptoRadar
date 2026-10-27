@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MacroEvent } from '../../types/cryptoRadar';
-import { fetchLiveMacroEvents } from '../../services/macroService';
+import { fetchLiveMacroEvents, DEFAULT_MACRO_EVENTS } from '../../services/macroService';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { ExternalLink, Bell, RefreshCw, Radio } from 'lucide-react';
@@ -13,8 +13,8 @@ interface PillarMacroProps {
 export const PillarMacroForexFactory: React.FC<PillarMacroProps> = ({ onOpenAlerts, isCompact = false }) => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [filterImpact, setFilterImpact] = useState<'all' | 'high'>('high');
-  const [events, setEvents] = useState<MacroEvent[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [events, setEvents] = useState<MacroEvent[]>(DEFAULT_MACRO_EVENTS);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [lastRefreshed, setLastRefreshed] = useState<string>('');
 
   const loadData = async () => {
