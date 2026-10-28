@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { TabId } from '../../types/cryptoRadar';
+import { TabId, MacroEvent } from '../../types/cryptoRadar';
 import { fetchLiveMarketData, LiveCoinStats, roundPrice } from '../../services/liveMarketService';
 import { fetchLiveEtfFlows, LiveEtfOverview } from '../../services/etfService';
+import { fetchLiveMacroEvents } from '../../services/macroService';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { AiTradingVerdictCard } from '../ai/AiTradingVerdictCard';
@@ -47,15 +48,17 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
   const [selectedCoin, setSelectedCoin] = useState<string>('BTC');
   const [liveCoins, setLiveCoins] = useState<Record<string, LiveCoinStats>>({});
   const [etfOverview, setEtfOverview] = useState<LiveEtfOverview | null>(null);
+  const [macroEvents, setMacroEvents] = useState<MacroEvent[]>([]);
   const [isLiveConnected, setIsLiveConnected] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
     async function loadData() {
       try {
-        const [marketRes, etfRes] = await Promise.all([
+        const [marketRes, etfRes, macroRes] = await Promise.all([
           fetchLiveMarketData(),
           fetchLiveEtfFlows(),
+          fetchLiveMacroEvents(),
         ]);
         if (isMounted) {
           if (marketRes.isLiveConnected) {
@@ -63,6 +66,9 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
             setIsLiveConnected(true);
           }
           setEtfOverview(etfRes);
+          if (Array.isArray(macroRes) && macroRes.length > 0) {
+            setMacroEvents(macroRes);
+          }
         }
       } catch (err) {
         console.warn('Overview live fetch warning:', err);
@@ -106,6 +112,22 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
     coinUnlockSummary = 'Ripple mở khóa ký quỹ 1 tỷ XRP định kỳ hàng tháng, phần lớn ~700-800 triệu XRP được khóa lại vào escrow.';
   }
 
+  // Lấy động danh sách các sự kiện vĩ mô Thẻ Đỏ (High Impact) sắp tới trực tiếp từ ForexFactory API
+  const upcomingHighEvents = macroEvents.filter((e) => !e.hasPassed && e.impact === 'high');
+  const upcomingRedMacroEvents = (upcomingHighEvents.length > 0 ? upcomingHighEvents : macroEvents.filter((e) => e.impact === 'high'))
+    .slice(0, 3)
+    .map((e) => `${e.title} (${e.country} ${e.timeDisplayVn.replace(' (VN)', '')})`);
+
+  const nextMacro = upcomingHighEvents[0] || macroEvents.find((e) => !e.hasPassed);
+  let nextMacroCountdown = '--:--:--';
+  if (nextMacro) {
+    const diffMs = Math.max(0, new Date(nextMacro.scheduledTime).getTime() - Date.now());
+    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+    const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+    nextMacroCountdown = `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
   const marketPayload: MarketPayload = {
     symbol: selectedCoin,
     price: activePrice,
@@ -122,12 +144,10 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
     mempoolPendingTxs: 39988,
     latestEtfNetflowMillion: latestEtfNet,
     totalEtfCumulativeMillion: etfOverview?.totalCumulativeUsdMillion ?? 21450.8,
-    upcomingRedMacroEvents: [
-      'Annual Budget Release (GBP 19:30)',
-      'BOC Monetary Policy Report & Rate Statement (CAD 20:45)',
-      'Overnight Rate (CAD 20:45)',
+    upcomingRedMacroEvents: upcomingRedMacroEvents.length > 0 ? upcomingRedMacroEvents : [
+      'Đang đồng bộ máy chủ ForexFactory...',
     ],
-    nextMacroCountdown: '51:25:00',
+    nextMacroCountdown,
     tokenUnlocksRiskSummary: coinUnlockSummary,
   };
 
