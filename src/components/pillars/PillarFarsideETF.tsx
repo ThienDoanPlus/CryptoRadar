@@ -357,7 +357,7 @@ export const PillarFarsideETF: React.FC<PillarEtfProps> = ({ isCompact = false }
       {/* Daily Flow Chart (Only for BTC & ETH which have actual approved spot trading) */}
       {(assetType === 'BTC' || assetType === 'ETH') && (
         <div className="bg-[#0d131f] border border-slate-800/80 rounded-xl p-5 space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold text-white flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-slate-300" />
@@ -377,29 +377,31 @@ export const PillarFarsideETF: React.FC<PillarEtfProps> = ({ isCompact = false }
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-2 items-end h-40 pt-4 px-2 bg-[#070a10]/60 rounded-xl border border-slate-800">
-            {(assetType === 'BTC' ? btcRows : ethRows).map((day) => {
-              const isPos = day.totalNet >= 0;
-              const maxVal = assetType === 'BTC' ? 900 : 25;
-              const heightPercent = Math.min(100, Math.max(12, (Math.abs(day.totalNet) / maxVal) * 100));
+          <div className="overflow-x-auto pb-2 -mx-2 px-2 no-scrollbar">
+            <div className="grid grid-cols-7 gap-1.5 sm:gap-2 items-end h-40 pt-4 px-2 bg-[#070a10]/60 rounded-xl border border-slate-800 min-w-[480px] sm:min-w-0">
+              {(assetType === 'BTC' ? btcRows : ethRows).map((day) => {
+                const isPos = day.totalNet >= 0;
+                const maxVal = assetType === 'BTC' ? 900 : 25;
+                const heightPercent = Math.min(100, Math.max(12, (Math.abs(day.totalNet) / maxVal) * 100));
 
-              return (
-                <div key={day.date} className="flex flex-col items-center h-full justify-end group">
-                  <span className={`text-[10px] font-mono-numbers font-semibold mb-1 opacity-80 group-hover:opacity-100 ${isPos ? 'text-emerald-300' : 'text-rose-300'}`}>
-                    {isPos ? `+${day.totalNet}` : day.totalNet}
-                  </span>
-                  <div
-                    className={`w-full rounded-t transition-all group-hover:brightness-110 ${
-                      isPos ? 'bg-emerald-600/80' : 'bg-rose-600/80'
-                    }`}
-                    style={{ height: `${heightPercent}%` }}
-                  />
-                  <span className="text-[10px] text-slate-400 font-mono-numbers mt-1.5 truncate">
-                    {day.date}
-                  </span>
-                </div>
-              );
-            })}
+                return (
+                  <div key={day.date} className="flex flex-col items-center h-full justify-end group">
+                    <span className={`text-[10px] font-mono-numbers font-semibold mb-1 opacity-80 group-hover:opacity-100 ${isPos ? 'text-emerald-300' : 'text-rose-300'}`}>
+                      {isPos ? `+${day.totalNet}` : day.totalNet}
+                    </span>
+                    <div
+                      className={`w-full rounded-t transition-all group-hover:brightness-110 ${
+                        isPos ? 'bg-emerald-600/80' : 'bg-rose-600/80'
+                      }`}
+                      style={{ height: `${heightPercent}%` }}
+                    />
+                    <span className="text-[10px] text-slate-400 font-mono-numbers mt-1.5 truncate">
+                      {day.date}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
@@ -407,7 +409,7 @@ export const PillarFarsideETF: React.FC<PillarEtfProps> = ({ isCompact = false }
       {/* Detailed Breakdown Table (Only for BTC & ETH) */}
       {(assetType === 'BTC' || assetType === 'ETH') && (
         <div className="bg-[#0d131f] border border-slate-800/80 rounded-xl p-5 space-y-3">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h3 className="text-sm font-bold text-white">
                 Bảng Khớp Lệnh Chi Tiết Từng Quỹ Phát Hành (Đơn vị: $ Triệu USD)

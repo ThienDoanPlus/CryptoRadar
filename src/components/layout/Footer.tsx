@@ -13,14 +13,14 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   return (
     <footer className="border-t border-slate-800/80 bg-[#070a10] text-slate-500 text-xs py-6 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         <div>
           <span className="font-bold text-slate-300">CryptoRadar Pro</span>
           <span className="mx-2">·</span>
           <span>Bộ Công Cụ Quan Sát Trực Quan 5 Trụ Cột</span>
         </div>
 
-        <div className="flex items-center gap-4 text-slate-400">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-slate-400">
           <button
             onClick={onOpenPortals}
             className="hover:text-slate-200 transition-colors"

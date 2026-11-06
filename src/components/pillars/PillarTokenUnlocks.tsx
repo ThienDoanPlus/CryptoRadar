@@ -123,11 +123,11 @@ export const PillarTokenUnlocks: React.FC<PillarUnlocksProps> = ({ onOpenAlerts,
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400">Lọc theo rủi ro:</span>
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0">
+          <span className="text-xs text-slate-400 shrink-0">Lọc theo rủi ro:</span>
           <button
             onClick={() => setFilterRisk('all')}
-            className={`px-2.5 py-1 text-xs rounded-lg transition-all border ${
+            className={`px-2.5 py-1 text-xs rounded-lg transition-all border shrink-0 ${
               filterRisk === 'all'
                 ? 'bg-slate-800 text-white border-slate-600 shadow-sm'
                 : 'bg-[#090d16] text-slate-400 hover:text-slate-200 border-slate-800'
@@ -137,7 +137,7 @@ export const PillarTokenUnlocks: React.FC<PillarUnlocksProps> = ({ onOpenAlerts,
           </button>
           <button
             onClick={() => setFilterRisk('critical')}
-            className={`px-2.5 py-1 text-xs rounded-lg transition-all border ${
+            className={`px-2.5 py-1 text-xs rounded-lg transition-all border shrink-0 ${
               filterRisk === 'critical'
                 ? 'bg-slate-800 text-rose-300 border-slate-600 shadow-sm'
                 : 'bg-[#090d16] text-slate-400 hover:text-rose-300 border-slate-800'
@@ -147,7 +147,7 @@ export const PillarTokenUnlocks: React.FC<PillarUnlocksProps> = ({ onOpenAlerts,
           </button>
           <button
             onClick={() => setFilterRisk('high')}
-            className={`px-2.5 py-1 text-xs rounded-lg transition-all border ${
+            className={`px-2.5 py-1 text-xs rounded-lg transition-all border shrink-0 ${
               filterRisk === 'high'
                 ? 'bg-slate-800 text-amber-200 border-slate-600 shadow-sm'
                 : 'bg-[#090d16] text-slate-400 hover:text-amber-200 border-slate-800'

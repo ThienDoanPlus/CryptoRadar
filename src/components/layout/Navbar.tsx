@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 CR
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-base font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors whitespace-nowrap">
+                <span className="text-sm sm:text-base font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors whitespace-nowrap">
                   CryptoRadar Pro
                 </span>
                 <span className="hidden md:inline-block text-[11px] text-slate-400 font-mono-numbers">
@@ -51,44 +51,44 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <button
               onClick={onToggleCompactMode}
               title={isCompactMode ? 'Chuyển sang chế độ Tiêu chuẩn' : 'Chuyển sang chế độ Compact (Thu gọn để hiển thị nhiều dữ liệu hơn)'}
-              className={`flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg transition-colors border ${
+              className={`flex items-center justify-center p-2 sm:px-2.5 sm:py-1.5 text-xs rounded-lg transition-colors border ${
                 isCompactMode
                   ? 'bg-slate-800 text-slate-200 border-slate-600 font-medium'
                   : 'text-slate-400 hover:text-slate-200 bg-slate-850 hover:bg-slate-800 border-slate-800'
               }`}
             >
               {isCompactMode ? <Maximize2 className="w-3.5 h-3.5 text-slate-300" /> : <Minimize2 className="w-3.5 h-3.5" />}
-              <span className="text-[11px] whitespace-nowrap">{isCompactMode ? 'Compact: Bật' : 'Compact'}</span>
+              <span className="text-[11px] whitespace-nowrap hidden md:inline ml-1">{isCompactMode ? 'Compact: Bật' : 'Compact'}</span>
             </button>
 
             <button
               onClick={onOpenDataSources}
               title="Xem chi tiết kết nối API Binance & Coinbase"
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
+              className="flex items-center justify-center p-2 sm:px-2.5 sm:py-1.5 text-xs text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-[11px] whitespace-nowrap">Nguồn API</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+              <span className="text-[11px] whitespace-nowrap hidden md:inline ml-1.5">Nguồn API</span>
             </button>
 
             {onOpenTidbHistory && (
               <button
                 onClick={onOpenTidbHistory}
                 title="Xem lịch sử tín hiệu lưu trong cơ sở dữ liệu TiDB Cloud Serverless"
-                className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
+                className="hidden sm:flex items-center justify-center p-2 sm:px-2.5 sm:py-1.5 text-xs text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
               >
                 <Database className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[11px] whitespace-nowrap hidden sm:inline">TiDB Cloud</span>
+                <span className="text-[11px] whitespace-nowrap hidden lg:inline ml-1.5">TiDB Cloud</span>
               </button>
             )}
 
             <button
               onClick={onOpenPortals}
               title="Danh bạ 5 Công cụ Miễn phí Chính thức"
-              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors border border-transparent hover:border-slate-800"
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors border border-transparent hover:border-slate-800"
             >
               <Compass className="w-3.5 h-3.5 text-slate-400" />
               <span className="text-[11px] whitespace-nowrap">Link 5 Sàn</span>
@@ -97,12 +97,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onOpenAlerts}
               title="Trung tâm thiết lập cảnh báo Âm thanh & Trình duyệt"
-              className="relative flex items-center gap-1.5 px-2.5 py-1.5 text-xs bg-slate-850 hover:bg-slate-800 text-slate-200 rounded-lg transition-colors border border-slate-800"
+              className="relative flex items-center justify-center p-2 sm:px-2.5 sm:py-1.5 text-xs bg-slate-850 hover:bg-slate-800 text-slate-200 rounded-lg transition-colors border border-slate-800"
             >
               <Bell className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-[11px] whitespace-nowrap hidden sm:inline">Cảnh Báo</span>
+              <span className="text-[11px] whitespace-nowrap hidden lg:inline ml-1.5">Cảnh Báo</span>
               {activeAlertCount > 0 && (
-                <span className="bg-slate-700 text-slate-200 font-mono-numbers font-semibold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="bg-slate-700 text-slate-200 font-mono-numbers font-semibold text-[10px] w-4 h-4 rounded-full flex items-center justify-center ml-0.5">
                   {activeAlertCount}
                 </span>
               )}
@@ -110,22 +110,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={onOpenRoutine}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 rounded-lg shadow-sm transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 rounded-lg shadow-sm transition-all active:scale-95"
             >
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-[11px] sm:text-xs whitespace-nowrap">Quy Trình 5 Phút</span>
+              <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span className="text-[11px] sm:text-xs whitespace-nowrap hidden sm:inline">Quy Trình 5 Phút</span>
+              <span className="text-[11px] whitespace-nowrap sm:hidden">5 Phút</span>
             </button>
           </div>
         </div>
 
-        <nav className="flex items-center gap-1 overflow-x-auto no-scrollbar py-1 border-t border-slate-800/60">
+        <nav className="flex items-center gap-1 overflow-x-auto no-scrollbar py-1.5 border-t border-slate-800/60 -mx-3 px-3 sm:mx-0 sm:px-0">
           {MAIN_NAV_ITEMS.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-150 ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-150 shrink-0 ${
                   isActive
                     ? 'bg-slate-800 text-white font-semibold border border-slate-700 shadow-sm'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850 border border-transparent'

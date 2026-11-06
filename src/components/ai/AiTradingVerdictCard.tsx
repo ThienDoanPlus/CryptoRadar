@@ -135,7 +135,7 @@ export const AiTradingVerdictCard: React.FC<AiTradingVerdictCardProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 shrink-0">
+        <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto shrink-0">
           {/* Nút Xem Lịch Sử TiDB Cloud */}
           <button
             onClick={() => setIsHistoryOpen(true)}
@@ -147,7 +147,7 @@ export const AiTradingVerdictCard: React.FC<AiTradingVerdictCardProps> = ({
           </button>
 
           {/* Model Selector Dropdown */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#070a10] border border-slate-700/80 rounded-lg">
+          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 px-2.5 py-1.5 bg-[#070a10] border border-slate-700/80 rounded-lg">
             <Cpu className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <select
               value={selectedModel}
@@ -156,7 +156,7 @@ export const AiTradingVerdictCard: React.FC<AiTradingVerdictCardProps> = ({
                 setSelectedModel(newModel);
                 saveGroqModel(newModel);
               }}
-              className="bg-transparent text-slate-200 text-xs font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent text-slate-200 text-xs font-medium focus:outline-none cursor-pointer"
               title="Chọn Model Phân Tích"
             >
               {AVAILABLE_GROQ_MODELS.map((m) => (
@@ -170,7 +170,7 @@ export const AiTradingVerdictCard: React.FC<AiTradingVerdictCardProps> = ({
           <button
             onClick={handleRunAnalysis}
             disabled={isAnalyzing}
-            className="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 disabled:bg-slate-800 text-white font-semibold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm active:scale-95 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full sm:w-auto justify-center px-4 py-2 sm:py-1.5 bg-emerald-700 hover:bg-emerald-600 disabled:bg-slate-800 text-white font-semibold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-sm active:scale-95 disabled:cursor-not-allowed cursor-pointer"
           >
             <Sparkles className={`w-3.5 h-3.5 ${isAnalyzing ? 'animate-spin text-emerald-200' : 'text-emerald-300'}`} />
             <span>{isAnalyzing ? `Đang Phân Tích ${payload.symbol}...` : verdict ? `Phân Tích Lại ${payload.symbol}` : `Chẩn Đoán ${payload.symbol} Ngay`}</span>

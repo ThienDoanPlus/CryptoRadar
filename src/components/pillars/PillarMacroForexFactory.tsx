@@ -158,7 +158,7 @@ export const PillarMacroForexFactory: React.FC<PillarMacroProps> = ({ onOpenAler
       </Card>
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0d131f] p-3 rounded-xl border border-slate-800">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs text-slate-400">Bộ lọc mức độ tác động:</span>
           <button
             onClick={() => setFilterImpact('high')}
@@ -233,8 +233,8 @@ export const PillarMacroForexFactory: React.FC<PillarMacroProps> = ({ onOpenAler
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 sm:gap-6 self-end lg:self-center shrink-0">
-                    <div className="text-right text-xs space-y-0.5 font-mono-numbers">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full lg:w-auto pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-800/60 shrink-0">
+                    <div className="text-left sm:text-right text-xs space-y-0.5 font-mono-numbers">
                       <div className="text-slate-400">
                         Dự báo: <strong className="text-white">{evt.forecast}</strong>
                       </div>
@@ -243,7 +243,7 @@ export const PillarMacroForexFactory: React.FC<PillarMacroProps> = ({ onOpenAler
                       </div>
                     </div>
 
-                    <div className="p-2.5 bg-[#0d131f] rounded-lg border border-slate-800 text-center min-w-[90px]">
+                    <div className="p-2 sm:p-2.5 bg-[#0d131f] rounded-lg border border-slate-800 text-center min-w-[75px] sm:min-w-[90px]">
                       <span className="text-[10px] text-slate-400 uppercase block">Thực Tế</span>
                       <div className="text-sm font-bold font-mono-numbers mt-0.5">
                         {evt.actual ? (
@@ -254,7 +254,7 @@ export const PillarMacroForexFactory: React.FC<PillarMacroProps> = ({ onOpenAler
                       </div>
                     </div>
 
-                    <div className="text-right min-w-[100px]">
+                    <div className="text-right min-w-[85px] sm:min-w-[100px]">
                       <div className="text-[10px] text-slate-400">{evt.timeDisplayVn}</div>
                       <div className={`text-xs font-bold font-mono-numbers mt-0.5 ${evt.hasPassed ? 'text-slate-500' : 'text-slate-200'}`}>
                         {timeData.text}

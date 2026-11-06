@@ -240,7 +240,7 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
 
         {/* Asset Selection Pill Bar */}
         <div className={`border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${isCompact ? 'mt-3 pt-3' : 'mt-5 pt-4'}`}>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center flex-wrap gap-2">
             <Coins className="w-4 h-4 text-slate-400 shrink-0" />
             <span className="text-xs text-slate-300 font-medium whitespace-nowrap">
               Chọn tài sản quan sát & chẩn đoán AI:
@@ -250,7 +250,7 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0">
             {SUPPORTED_COINS.map((c) => {
               const isSelected = selectedCoin === c.symbol;
               const stats = liveCoins[c.symbol];
@@ -260,7 +260,7 @@ export const OverviewExecutive: React.FC<OverviewExecutiveProps> = ({
                 <button
                   key={c.symbol}
                   onClick={() => setSelectedCoin(c.symbol)}
-                  className={`rounded-lg text-xs transition-all whitespace-nowrap flex items-center gap-2 border px-3 py-1.5 cursor-pointer ${
+                  className={`rounded-lg text-xs transition-all whitespace-nowrap flex items-center gap-2 border px-3 py-1.5 shrink-0 cursor-pointer ${
                     isSelected
                       ? 'bg-slate-800 text-white border-slate-500 font-semibold shadow-md ring-1 ring-slate-600'
                       : 'bg-[#090d16] text-slate-400 hover:text-slate-200 border-slate-800 hover:border-slate-700'

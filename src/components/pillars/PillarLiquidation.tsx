@@ -213,7 +213,7 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-7 bg-[#0d131f] border border-slate-800/80 rounded-xl p-5 space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h2 className="text-sm font-bold text-white flex items-center gap-2">
                 <Layers className="w-4 h-4 text-slate-400" />
@@ -223,7 +223,7 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
                 Vùng thanh lý cụm dày đặc là nơi tập trung hàng trăm triệu USD lệnh Stop Loss
               </p>
             </div>
-            <div className="text-right">
+            <div className="text-left sm:text-right">
               <span className="text-xs text-slate-400">Giá hiện tại</span>
               <div className="text-sm font-bold font-mono-numbers text-emerald-400">
                 ${currentPrice.toLocaleString()}
@@ -278,7 +278,7 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
               return (
                 <div
                   key={idx}
-                  className={`p-2 rounded flex items-center justify-between transition-all ${
+                  className={`p-2.5 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all ${
                     isCurrent
                       ? 'bg-slate-800 border border-slate-600 py-2.5'
                       : lvl.intensity === 'critical'
@@ -288,8 +288,8 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
                       : 'bg-[#070a10]/50'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className={`text-xs font-mono-numbers font-bold w-18 ${isCurrent ? 'text-white' : 'text-slate-200'}`}>
+                  <div className="flex items-center flex-wrap gap-2 sm:gap-3">
+                    <span className={`text-xs font-mono-numbers font-bold min-w-[70px] ${isCurrent ? 'text-white' : 'text-slate-200'}`}>
                       ${lvl.price.toLocaleString()}
                     </span>
 
@@ -307,10 +307,10 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0">
                     {vol > 0 && (
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 sm:w-36 bg-slate-800 h-2 rounded-full overflow-hidden flex justify-end">
+                      <div className="flex items-center gap-2 flex-1 sm:flex-initial justify-between sm:justify-end">
+                        <div className="flex-1 sm:w-36 max-w-[140px] sm:max-w-none bg-slate-800 h-2 rounded-full overflow-hidden flex justify-end">
                           <div
                             className={`h-2 rounded-full ${
                               isShortZone ? 'bg-slate-600' : 'bg-rose-800/80'
@@ -318,13 +318,13 @@ export const PillarLiquidation: React.FC<PillarLiquidationProps> = ({ isCompact 
                             style={{ width: `${Math.min(100, (vol / 600) * 100)}%` }}
                           />
                         </div>
-                        <span className="text-xs font-mono-numbers text-slate-300 min-w-[55px] text-right">
+                        <span className="text-xs font-mono-numbers text-slate-300 min-w-[75px] text-right">
                           ${vol}M {isShortZone ? 'Short' : 'Long'}
                         </span>
                       </div>
                     )}
                     {isCurrent && (
-                      <span className="text-xs font-bold text-slate-200 font-mono-numbers">
+                      <span className="text-xs font-bold text-slate-200 font-mono-numbers ml-auto sm:ml-0">
                         ← HIỆN TẠI
                       </span>
                     )}

@@ -91,7 +91,7 @@ export default function App() {
         className={`flex-1 max-w-7xl w-full mx-auto transition-all ${
           isCompactMode
             ? 'px-3 sm:px-4 lg:px-6 py-3 space-y-3'
-            : 'px-4 sm:px-6 lg:px-8 py-6'
+            : 'px-3 sm:px-6 lg:px-8 py-4 sm:py-6'
         }`}
       >
         {activeTab === 'overview' && (
